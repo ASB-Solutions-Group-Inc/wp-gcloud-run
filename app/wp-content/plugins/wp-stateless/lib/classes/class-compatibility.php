@@ -147,6 +147,11 @@ namespace wpCloud\StatelessMedia {
        */
       new WPForms();
 
+      /**
+       * Support for WooCommerce
+       */
+      new WooCommerce();
+
     }
 
     /**
@@ -189,6 +194,7 @@ namespace wpCloud\StatelessMedia {
     public function save_modules() {
       if( isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'stateless_modules' && wp_verify_nonce( $_POST[ '_smnonce' ], 'wp-stateless-modules' ) ) {
         $modules = !empty( $_POST[ 'stateless-modules' ] ) ? $_POST[ 'stateless-modules' ] : array();
+        $modules = array_map( 'sanitize_text_field', $modules);
         $modules = apply_filters( 'stateless::modules::save', $modules );
 
         if( is_network_admin() ) {

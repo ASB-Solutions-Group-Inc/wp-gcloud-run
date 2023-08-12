@@ -106,7 +106,7 @@ namespace wpCloud\StatelessMedia {
           case 'notice':
             if(!is_array($message)){
               $message = array( 
-                'title' => sprintf( __( '<b>%s</b> has the following notice:', $this->domain ), $this->name ),
+                'title' => sprintf( __( '<b>%s</b> has the following notice:', $this->domain ), esc_html($this->name) ),
                 'message' => $message,
                 'button' => null,
               );
@@ -182,10 +182,6 @@ namespace wpCloud\StatelessMedia {
         if ( is_multisite() && ! is_super_admin() ) {
           return;
         }
-        //** Ignore messages on TGM Plugin Activation page */
-        if( \UsabilityDynamics\WP\TGM_Plugin_Activation::get_instance()->is_tgmpa_page() ) {
-          return;
-        }
 
         $errors = apply_filters( 'ud:errors:admin_notices', $this->errors, $this->args );
         $notices = apply_filters( 'stateless:notices:admin_notices', $this->notices, $this->args );
@@ -194,7 +190,7 @@ namespace wpCloud\StatelessMedia {
         if( !empty( $errors ) && is_array( $errors ) ) {
           $message = '<ul style="none;"><li>' . implode( '</li><li>', $errors ) . '</li></ul>';
           $data = array(
-            'title' => sprintf( __( '%s is not active due to following errors:', $this->domain ), $this->name ),
+            'title' => sprintf( __( '%s is not active due to following errors:', $this->domain ), esc_html($this->name) ),
             'class' => 'error',
             'message' => $message,
             'action_links' => !empty($this->action_links[ 'errors' ])?$this->action_links[ 'errors' ]:null,
@@ -270,7 +266,8 @@ namespace wpCloud\StatelessMedia {
           $response['error'] = __( 'Invalid key', $this->domain );
         }
         else{
-          $compatibility = Module::get_module($_POST['key']);
+          $option_key = sanitize_key($_POST['key']);
+          $compatibility = Module::get_module($option_key);
           if(!empty($compatibility['self']) && is_callable(array($compatibility['self'], 'enable_compatibility'))){
             $response['success'] = $compatibility['self']->enable_compatibility();
           }

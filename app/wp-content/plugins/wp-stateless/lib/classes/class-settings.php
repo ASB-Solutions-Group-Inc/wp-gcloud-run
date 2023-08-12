@@ -519,7 +519,12 @@ namespace wpCloud\StatelessMedia {
           $root_dir_value = false;
 
           foreach ( $settings as $name => $value ) {
-
+            /**
+             * Sanitize POST data
+             */
+            if (!is_array($value)) {
+              $value = sanitize_text_field($value);
+            }
             /**
              * root_dir settings
              */

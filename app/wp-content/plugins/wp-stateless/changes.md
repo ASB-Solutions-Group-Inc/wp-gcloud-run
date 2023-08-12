@@ -1,3 +1,37 @@
+#### 3.2.4
+
+- FIX - Website unresponsive after Upgrade [#669](https://github.com/udx/wp-stateless/issues/669).
+
+#### 3.2.3
+
+- ENHANCEMENT - Updated Client library for Google APIs.
+- ENHANCEMENT - Updated Monolog library to version 3.
+- ENHANCEMENT - Updated JWT library.
+- FIX - Fixed vulnerability issues.
+- FIX - Fixed an errors and warnings on PHP 8.1.
+- FIX - Fixed an error that occured when WP_STATELESS_MEDIA_UPLOAD_CHUNK_SIZE is set.
+
+#### 3.2.2
+
+- FIX -  Folder setting can't be saved from the settings page [#639](https://github.com/udx/wp-stateless/issues/639).
+
+#### 3.2.1
+
+- FIX - Updated requirments.
+- FIX - WP-Stateless 3.2.0 doesn’t upload docs, only images [#638](https://github.com/udx/wp-stateless/issues/638).
+
+#### 3.2.0
+
+- ENHANCEMENT - Upgraded `wpmetabox` library.
+- ENHANCEMENT - Updated Client library for Google APIs.
+- ENHANCEMENT - Updated Guzzle library to version 7.
+- ENHANCEMENT - Updated JWT library.
+- ENHANCEMENT - Updated `license` functionality, removed `update checker`.
+- FIX - Fixed vulnerability issues.
+- FIX - Fixed erros and warnings on PHP 8.
+- FIX - problem after the upgrade [#628](https://github.com/udx/wp-stateless/issues/628).
+- FIX - image_downsize() PHP8 Required parameter $id follows optional parameter $false [#619](https://github.com/udx/wp-stateless/issues/619). 
+
 #### 3.1.1
 
 - ENHANCEMENT - Notification for the administrator about finished synchronization. GitHub issue [#576](https://github.com/udx/wp-stateless/issues/576).

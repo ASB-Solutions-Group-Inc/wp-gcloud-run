@@ -25,7 +25,7 @@ class NonLibrarySync extends BackgroundSync {
    * Extended construct
    */
   public function __construct() {
-    $this->items = array_filter(array_unique(apply_filters('sm:sync::nonMediaFiles', [])));
+   //$this->items = array_filter(array_unique(apply_filters('sm:sync::nonMediaFiles', [])));
     parent::__construct();
   }
 
@@ -62,6 +62,7 @@ class NonLibrarySync extends BackgroundSync {
       // Make sure there is no orphaned data and state
       delete_site_option($this->get_stopped_option_key());
       $this->clear_process_meta();
+      $this->items = array_filter(array_unique(apply_filters('sm:sync::nonMediaFiles', [])));
 
       $chunks = array_chunk($this->items, $this->get_max_batch_size());
       if (!empty($chunks)) {
@@ -98,7 +99,6 @@ class NonLibrarySync extends BackgroundSync {
     try {
       parent::before_task($item);
 
-      @error_reporting(0);
       timer_start();
 
       if (ud_get_stateless_media()->is_connected_to_gs() !== true) {
@@ -174,6 +174,7 @@ class NonLibrarySync extends BackgroundSync {
    * @return int
    */
   public function get_total_items() {
+    $this->items = array_filter(array_unique(apply_filters('sm:sync::nonMediaFiles', [])));
     return count($this->items);
   }
 

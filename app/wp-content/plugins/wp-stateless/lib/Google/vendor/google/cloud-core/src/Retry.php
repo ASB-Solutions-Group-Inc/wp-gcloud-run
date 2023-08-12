@@ -25,6 +25,8 @@ namespace Google\Cloud\Core;
  */
 class Retry
 {
+    const RETRY_HEADER_KEY = 'x-goog-api-client';
+
     /**
      * @var int
      */
@@ -80,7 +82,7 @@ class Retry
                 return $res;
             } catch (\Exception $exception) {
                 if ($this->retryFunction) {
-                    if (!call_user_func($this->retryFunction, $exception)) {
+                    if (!call_user_func($this->retryFunction, $exception, $retryAttempt)) {
                         throw $exception;
                     }
                 }
