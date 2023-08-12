@@ -14,7 +14,8 @@ RUN docker-php-ext-install zip \
     && a2enmod rewrite
 
 WORKDIR /var/www/html
-COPY --chown=admin:admin ./app /var/www/html/ 
-WORKDIR /var/www/html/app
-RUN chown -R admin:admin /var/www/html/app
-RUN chmod 777 /var/www/html/app
+COPY ./app /var/www/html/ 
+
+USER root 
+RUN chown -R 775 /var/www/html/app
+
