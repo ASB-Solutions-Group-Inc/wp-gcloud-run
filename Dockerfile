@@ -13,9 +13,14 @@ RUN docker-php-ext-install zip \
     && docker-php-ext-install -j "$(nproc)" gd \
     && a2enmod rewrite
 
+# RUN useradd -ms /bin/bash admin
+
 WORKDIR /var/www/html
 COPY ./app /var/www/html/ 
 
+RUN ls /var/www/html/
+
+WORKDIR /var/www/html/app/wp-content/upload
 USER root 
-RUN chown -R 775 /var/www/html
+RUN chown -R 775 /var/www/html/app/wp-content/upload
 
