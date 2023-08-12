@@ -7,7 +7,7 @@ steps:
     args: ['pull', 'docker/dockerfile:1.0-experimental']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/wp-cloudrun-demo/my-docker-repo/wordpress:latest', 
+           'us-central1-docker.pkg.dev/wp-cloudrun-demo/wordpress:latest', 
            '.']
     env: 
       - "DOCKER_BUILDKIT=1"
@@ -15,6 +15,10 @@ steps:
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
-           'us-central1-docker.pkg.dev/wp-cloudrun-demo/my-docker-repo/wordpress:latest']
-
+           'us-central1-docker.pkg.dev/wp-cloudrun-demo/wordpress:latest']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: ['run', 'deploy', 'SERVICE-NAME', '--image', 'us-central1-docker.pkg.dev/wp-cloudrun-demo/wordpress:latest', '--region', 'us-central-1']
+images:
+- us-central1-docker.pkg.dev/wp-cloudrun-demo/wordpress:latest
 # [END cloudbuild_basic_config]
