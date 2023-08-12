@@ -28,3 +28,16 @@ RUN chown -R 777 /var/www/html/app/wp-content/
 WORKDIR /var/www/html/app/
 RUN chown -R 777 /var/www/html/app
 
+WORKDIR /var/www/html/app/wp-admin
+RUN chown -R 777 /var/www/html/app/wp-admin
+
+WORKDIR /var/www/html/app/wp-include
+RUN chown -R 777 /var/www/html/app/wp-include
+
+WORKDIR /var/www/html/app/wp-content/plugins
+RUN chown -R 777 /var/www/html/app/wp-content/plugins
+
+WORKDIR /var/www/html/app/wp-content/upload
+RUN chown -R 777 /var/www/html/app/wp-content/upload
+WORKDIR /var/www/html/app/wp-content/themes
+RUN chown -R 777 /var/www/html/app/wp-content/themes
