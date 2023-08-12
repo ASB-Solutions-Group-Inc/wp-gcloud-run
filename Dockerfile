@@ -15,8 +15,9 @@ RUN docker-php-ext-install zip \
 
 # RUN useradd -ms /bin/bash admin
 
+USER  root 
 WORKDIR /var/www/html
-COPY ./app /var/www/html/ 
+COPY --chmod=777 ./app /var/www/html/ 
 
 
 
@@ -41,3 +42,6 @@ WORKDIR /var/www/html/app/wp-content/upload
 RUN chown -R 777 /var/www/html/app/wp-content/upload
 WORKDIR /var/www/html/app/wp-content/themes
 RUN chown -R 777 /var/www/html/app/wp-content/themes
+
+WORKDIR /var/www/html/app/wp-includes
+RUN chown -R 777 /var/www/html/app/wp-includes
