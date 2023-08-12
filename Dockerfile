@@ -17,5 +17,5 @@ WORKDIR /var/www/html
 COPY ./app /var/www/html/ 
 
 USER root 
-RUN chown -R 775 /var/www/html/app
+RUN chown -R 775 /var/www/html
 
