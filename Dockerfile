@@ -20,8 +20,8 @@ COPY ./app /var/www/html/
 
 
 
-WORKDIR /var/www/html/app/wp-content
-RUN ls -ld /var/www/html/app/wp-content
+WORKDIR /var/www/html/app
+RUN ls -alrt /var/www/html/app
 USER root 
-RUN chown -R 777 /var/www/html/app/wp-content
+RUN chown -R 777 /var/www/html/app
 
