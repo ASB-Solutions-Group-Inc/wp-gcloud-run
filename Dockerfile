@@ -31,6 +31,8 @@ RUN chown -R 777 /var/www/html/app
 
 WORKDIR /var/www/html/app/wp-admin
 RUN chown -R 777 /var/www/html/app/wp-admin
+WORKDIR /var/www/html/app/wp-admin/includes
+RUN chown -R 777 /var/www/html/app/wp-admin/includes
 
 WORKDIR /var/www/html/app/wp-include
 RUN chown -R 777 /var/www/html/app/wp-include

@@ -18,7 +18,7 @@ steps:
            'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'wp-gcloud-run', '--image', 'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest', '--region', 'us-central-1']
+    args: ['run', 'deploy', 'wp-gcloud-run', '--image', 'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest', '--region', 'us-central1']
 images:
 - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
 # [END cloudbuild_basic_config]
