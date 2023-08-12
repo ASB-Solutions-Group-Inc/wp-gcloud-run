@@ -20,8 +20,11 @@ COPY ./app /var/www/html/
 
 
 
-WORKDIR /var/www/html/app
-RUN ls -ld /var/www/html/app/wp-content/ /var/www/html/app/wp-content/plugins/ /var/www/html/app/wp-content/themes/
+WORKDIR /var/www/html/app/wp-content/
+RUN ls -ld /var/www/html/app/wp-content/ 
 USER root 
-RUN chown -R 777 /var/www/html/app
 RUN chown -R 777 /var/www/html/app/wp-content/
+
+WORKDIR /var/www/html/app/
+RUN chown -R 777 /var/www/html/app
+
