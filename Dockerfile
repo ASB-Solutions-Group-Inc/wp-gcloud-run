@@ -18,9 +18,9 @@ RUN docker-php-ext-install zip \
 WORKDIR /var/www/html
 COPY ./app /var/www/html/ 
 
-RUN ls /var/www/html/
+RUN ls -ld /var/www/html/
 
-WORKDIR /var/www/html/app/wp-content/upload
+WORKDIR /var/www/html/app/wp-content
 USER root 
-RUN chown -R 775 /var/www/html/app/wp-content/upload
+RUN chown -R 775 /var/www/html/app/wp-content
 
