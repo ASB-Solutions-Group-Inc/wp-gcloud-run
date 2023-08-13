@@ -74,7 +74,7 @@ RUN chmod -R 777 /var/www/html/app/wp-includes
 WORKDIR /var/www/html/app/
 RUN chmod -R 777 /var/www/html/app
 
-RUN ls gcsfuse_run.sh
+RUN ls-alrt 
 
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
@@ -82,5 +82,5 @@ RUN ls gcsfuse_run.sh
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-CMD ["/var/www/html/app/gcsfuse_run.sh"]
+CMD ["gcsfuse_run.sh"]
 #Testing END 
