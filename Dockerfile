@@ -79,6 +79,9 @@ RUN chmod -R 777 /var/www/html/wp-includes
 
 WORKDIR /var/www/html/
 
+# Set fallback mount directory
+ENV MNT_DIR /var/www/html/wp-content/upload
+
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
 # https://github.com/krallin/tini
