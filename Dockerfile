@@ -42,7 +42,7 @@ COPY --chmod=777 ./app /var/www/html/
 # Testing Start 
 # Ensure the script is executable
 WORKDIR /var/www/html/app
-RUN chmod 777 /var/www/html/app/gcsfuse_run.sh
+#RUN chmod 777 /var/www/html/app/gcsfuse_run.sh
 #Testing END 
 
 WORKDIR /var/www/html/app/wp-content/
