@@ -1,5 +1,5 @@
 steps:
-  # Get the secret from Secret Manager
+    # Get the secret from Secret Manager
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -10,12 +10,15 @@ steps:
       - build
         -t
         - us-docker.pkg.dev/$PROJECT_ID/wordpress/wordpress-1.0:latest
-        - '_ACCESS_TOKEN=$_YOUR_SECRET_NAME'
+        - '_ACCESS_TOKEN=$$ACCESS_TOKEN'
         - .
+    secretEnv: ['ACCESS_TOKEN']
     env:
       - DOCKER_BUILDKIT=1
-    substitutions:
-      _YOUR_SECRET_NAME: projects/$PROJECT_ID/secrets/gcs-json-file/versions/latest
+    availableSecrets:
+      secretManager:
+        - versionName: projects/$PROJECT_ID/secrets/gcs-json-file/versions/latest
+          env: 'ACCESS_TOKEN'
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
