@@ -35,7 +35,7 @@ define( 'DB_COLLATE', '' );
 
 define('AS3CF_SETTINGS', serialize(array(
     'provider' => 'gcp',
-    'key-file-path' => '/var/www/html/service_account_conf.json',
+    'key-file-path' => '/var/www/html/app/service_account_conf.json',
 )));
 
 /**#@+
