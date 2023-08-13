@@ -41,7 +41,8 @@ COPY --chmod=777 ./app /var/www/html/
 
 # Testing Start 
 # Ensure the script is executable
-RUN chmod +x /app/gcsfuse_run.sh
+WORKDIR /var/www/html/app
+RUN chmod +x /var/www/html/app/gcsfuse_run.sh
 #Testing END 
 
 WORKDIR /var/www/html/app/wp-content/
@@ -49,11 +50,9 @@ RUN ls -ld /var/www/html/app/wp-content/
 USER root 
 RUN chown -R 777 /var/www/html/app/wp-content/
 
-WORKDIR /var/www/html/app/
-RUN chown -R 777 /var/www/html/app
-
 WORKDIR /var/www/html/app/wp-admin
 RUN chown -R 777 /var/www/html/app/wp-admin
+
 WORKDIR /var/www/html/app/wp-admin/includes
 RUN chown -R 777 /var/www/html/app/wp-admin/includes
 
@@ -65,11 +64,15 @@ RUN chown -R 777 /var/www/html/app/wp-content/plugins
 
 WORKDIR /var/www/html/app/wp-content/upload
 RUN chown -R 777 /var/www/html/app/wp-content/upload
+
 WORKDIR /var/www/html/app/wp-content/themes
 RUN chown -R 777 /var/www/html/app/wp-content/themes
 
 WORKDIR /var/www/html/app/wp-includes
 RUN chown -R 777 /var/www/html/app/wp-includes
+
+WORKDIR /var/www/html/app/
+RUN chown -R 777 /var/www/html/app
 
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
@@ -77,5 +80,5 @@ RUN chown -R 777 /var/www/html/app/wp-includes
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-CMD ["/app/gcsfuse_run.sh"]
+CMD ["/var/www/html/app/gcsfuse_run.sh"]
 #Testing END 
