@@ -6,11 +6,12 @@ steps:
     args: ['pull', 'docker/dockerfile:1.0-experimental']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'us-central1-docker.pkg.dev/$PROJECT_ID/wordpress/wordpress-1.0:latest', '_ACCESS_TOKEN=$$ACCESS_TOKEN',
+           'us-central1-docker.pkg.dev/$PROJECT_ID/wordpress/wordpress-1.0:latest', 
            '.']
     secretEnv: ['ACCESS_TOKEN']
     env:
       - DOCKER_BUILDKIT=1
+      - '_ACCESS_TOKEN=$$ACCESS_TOKEN'
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args:
