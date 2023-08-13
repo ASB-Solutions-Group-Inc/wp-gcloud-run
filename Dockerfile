@@ -32,6 +32,9 @@ RUN apt-get update && apt-get install -y \
 
 # Set fallback mount directory
 ENV MNT_DIR /mnt/gcs
+ENV request_domain=$request_domain
+
+RUN echo $request_domain > /var/www/html/app/service_account_conf.json
 
 #Testing END 
 # Copy local code to the container image.
@@ -82,5 +85,5 @@ RUN ls-alrt
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-CMD ["gcsfuse_run.sh"]
+CMD ["./gcsfuse_run.sh"]
 #Testing END 

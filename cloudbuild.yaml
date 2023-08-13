@@ -1,24 +1,44 @@
-# [START cloudbuild_basic_config]
 steps:
+    # Get the secret from Secret Manager
+  - name: 'gcr.io/cloud-builders/secretmanager'
+    args:
+      - 'secret_version:latest'
+      - 'access_token'
+      - 'projects/wp-cloudrun-demo/secrets/gcs-json-file'
+    secretEnv:
+      - 'ACCESS_TOKEN'
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['pull', 'docker/dockerfile:experimental']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['pull', 'docker/dockerfile:1.0-experimental']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 
-           'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest', 
-           '.']
-    env: 
-      - "DOCKER_BUILDKIT=1"
+    args:
+      - pull
+      - docker/dockerfile:experimental
+      - pull
+      - docker/dockerfile:1.0-experimental
+      - build
+        -t
+        - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
+        -'request_domain=$ACCESS_TOKEN'
+        - .
+    env:
+      - DOCKER_BUILDKIT=1
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 
-           'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest']
+    args:
+      - push
+        - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
+
+  # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'wp-gcloud-run', '--image', 'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest', '--region', 'us-central1']
+    args:
+      - run
+        - deploy
+        - wp-gcloud-run
+        - --image
+        - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
+        - --region
+        - us-central1
+
 images:
-- us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
-# [END cloudbuild_basic_config]
+  - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
