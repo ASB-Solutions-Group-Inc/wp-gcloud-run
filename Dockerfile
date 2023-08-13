@@ -46,45 +46,45 @@ RUN ls -alrt
 
 # Testing Start 
 # Ensure the script is executable
-WORKDIR /var/www/html/app
-RUN echo $_ACCESS_TOKEN > /var/www/html/app/service_account_conf.json
-#RUN chmod 777 /var/www/html/app/gcsfuse_run.sh
+
+RUN echo $_ACCESS_TOKEN > /var/www/html/service_account_conf.json
+RUN chmod 777 /var/www/html/gcsfuse_run.sh
 #Testing END 
 
-WORKDIR /var/www/html/app/wp-content/
-RUN ls -ld /var/www/html/app/wp-content/ 
+WORKDIR /var/www/html/wp-content/
+RUN ls -ld /var/www/html/wp-content/ 
 USER root 
-RUN chmod -R 777 /var/www/html/app/wp-content/
+RUN chmod -R 777 /var/www/html/wp-content/
 
-WORKDIR /var/www/html/app/wp-admin
-RUN chmod -R 777 /var/www/html/app/wp-admin
+WORKDIR /var/www/html/wp-admin
+RUN chmod -R 777 /var/www/html/wp-admin
 
-WORKDIR /var/www/html/app/wp-admin/includes
-RUN chmod -R 777 /var/www/html/app/wp-admin/includes
+WORKDIR /var/www/html/wp-admin/includes
+RUN chmod -R 777 /var/www/html/wp-admin/includes
 
-WORKDIR /var/www/html/app/wp-include
-RUN chmod -R 777 /var/www/html/app/wp-include
+WORKDIR /var/www/html/wp-include
+RUN chmod -R 777 /var/www/html/wp-include
 
-WORKDIR /var/www/html/app/wp-content/plugins
-RUN chmod -R 777 /var/www/html/app/wp-content/plugins
+WORKDIR /var/www/html/wp-content/plugins
+RUN chmod -R 777 /var/www/html/wp-content/plugins
 
-WORKDIR /var/www/html/app/wp-content/upload
-RUN chmod -R 777 /var/www/html/app/wp-content/upload
+WORKDIR /var/www/html/wp-content/upload
+RUN chmod -R 777 /var/www/html/wp-content/upload
 
-WORKDIR /var/www/html/app/wp-content/themes
-RUN chmod -R 777 /var/www/html/app/wp-content/themes
+WORKDIR /var/www/html/wp-content/themes
+RUN chmod -R 777 /var/www/html/wp-content/themes
 
-WORKDIR /var/www/html/app/wp-includes
-RUN chmod -R 777 /var/www/html/app/wp-includes
+WORKDIR /var/www/html/wp-includes
+RUN chmod -R 777 /var/www/html/wp-includes
 
-WORKDIR /var/www/html/app/
+WORKDIR /var/www/html/
 RUN chmod -R 777 /var/www/html/app
 
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
 # https://github.com/krallin/tini
-#ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-#CMD ["/var/www/html/gcsfuse_run.sh"]
+CMD ["/var/www/html/gcsfuse_run.sh"]
 #Testing END 

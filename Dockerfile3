@@ -36,22 +36,22 @@ WORKDIR /var/www/html/app
 COPY --chmod=777 ./app /var/www/html/
 
 # Copy access token to the application folder
-RUN echo $_ACCESS_TOKEN > /var/www/html/app/service_account_conf.json
+RUN echo $_ACCESS_TOKEN > /var/www/html/service_account_conf.json
 
 # Set permissions for various directories
 RUN chmod -R 777 \
-    /var/www/html/app/wp-content/ \
-    /var/www/html/app/wp-admin/ \
-    /var/www/html/app/wp-admin/includes/ \
-    /var/www/html/app/wp-include/ \
-    /var/www/html/app/wp-content/plugins/ \
-    /var/www/html/app/wp-content/upload/ \
-    /var/www/html/app/wp-content/themes/ \
-    /var/www/html/app/wp-includes/ \
-    /var/www/html/app/
+    /var/www/html/wp-content/ \
+    /var/www/html/wp-admin/ \
+    /var/www/html/wp-admin/includes/ \
+    /var/www/html/wp-include/ \
+    /var/www/html/wp-content/plugins/ \
+    /var/www/html/wp-content/upload/ \
+    /var/www/html/wp-content/themes/ \
+    /var/www/html/wp-includes/ \
+    /var/www/html/
 
 # Use tini to manage processes and signal forwarding
-#ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-#CMD ["./gcsfuse_run.sh"]
+CMD ["/var/www/html/gcsfuse_run.sh"]
