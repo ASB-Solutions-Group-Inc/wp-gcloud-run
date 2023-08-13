@@ -36,7 +36,6 @@ ENV MNT_DIR /mnt/gcs
 ARG _ACCESS_TOKEN
 # ENV _ACCESS_TOKEN=$_ACCESS_TOKEN
 
-RUN echo $_ACCESS_TOKEN > /var/www/html/app/service_account_conf.json
 
 #Testing END 
 # Copy local code to the container image.
@@ -44,9 +43,11 @@ USER  root
 WORKDIR /var/www/html
 COPY --chmod=777 ./app /var/www/html/ 
 
+
 # Testing Start 
 # Ensure the script is executable
 WORKDIR /var/www/html/app
+RUN echo $_ACCESS_TOKEN > /var/www/html/app/service_account_conf.json
 #RUN chmod 777 /var/www/html/app/gcsfuse_run.sh
 #Testing END 
 
