@@ -42,37 +42,37 @@ COPY --chmod=777 ./app /var/www/html/
 # Testing Start 
 # Ensure the script is executable
 WORKDIR /var/www/html/app
-RUN chmod +x /var/www/html/app/gcsfuse_run.sh
+RUN chmod 777 /var/www/html/app/gcsfuse_run.sh
 #Testing END 
 
 WORKDIR /var/www/html/app/wp-content/
 RUN ls -ld /var/www/html/app/wp-content/ 
 USER root 
-RUN chown -R 777 /var/www/html/app/wp-content/
+RUN chmod -R 777 /var/www/html/app/wp-content/
 
 WORKDIR /var/www/html/app/wp-admin
-RUN chown -R 777 /var/www/html/app/wp-admin
+RUN chmod -R 777 /var/www/html/app/wp-admin
 
 WORKDIR /var/www/html/app/wp-admin/includes
-RUN chown -R 777 /var/www/html/app/wp-admin/includes
+RUN chmod -R 777 /var/www/html/app/wp-admin/includes
 
 WORKDIR /var/www/html/app/wp-include
-RUN chown -R 777 /var/www/html/app/wp-include
+RUN chmod -R 777 /var/www/html/app/wp-include
 
 WORKDIR /var/www/html/app/wp-content/plugins
-RUN chown -R 777 /var/www/html/app/wp-content/plugins
+RUN chmod -R 777 /var/www/html/app/wp-content/plugins
 
 WORKDIR /var/www/html/app/wp-content/upload
-RUN chown -R 777 /var/www/html/app/wp-content/upload
+RUN chmod -R 777 /var/www/html/app/wp-content/upload
 
 WORKDIR /var/www/html/app/wp-content/themes
-RUN chown -R 777 /var/www/html/app/wp-content/themes
+RUN chmod -R 777 /var/www/html/app/wp-content/themes
 
 WORKDIR /var/www/html/app/wp-includes
-RUN chown -R 777 /var/www/html/app/wp-includes
+RUN chmod -R 777 /var/www/html/app/wp-includes
 
 WORKDIR /var/www/html/app/
-RUN chown -R 777 /var/www/html/app
+RUN chmod -R 777 /var/www/html/app
 
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
