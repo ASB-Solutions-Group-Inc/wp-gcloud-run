@@ -80,8 +80,6 @@ RUN chmod -R 777 /var/www/html/app/wp-includes
 WORKDIR /var/www/html/app/
 RUN chmod -R 777 /var/www/html/app
 
-RUN ls-alrt 
-
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
 # https://github.com/krallin/tini
