@@ -19,7 +19,7 @@ steps:
     entrypoint: gcloud
     args: ['run', 'deploy', 'wp-gcloud-run', '--image', 'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest', '--region', 'us-central1']
 images:
-  - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-2.0:latest
+  - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
 availableSecrets:
   secretManager:
     - versionName: projects/$PROJECT_ID/secrets/gcs-json-file/versions/latest
