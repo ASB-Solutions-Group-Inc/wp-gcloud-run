@@ -78,7 +78,6 @@ WORKDIR /var/www/html/wp-includes
 RUN chmod -R 777 /var/www/html/wp-includes
 
 WORKDIR /var/www/html/
-RUN chmod -R 777 /var/www/html/app
 
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
