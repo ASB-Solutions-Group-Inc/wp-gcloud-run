@@ -40,7 +40,15 @@ RUN echo $_ACCESS_TOKEN > /var/www/html/app/service_account_conf.json
 
 # Set permissions for various directories
 RUN chmod -R 777 \
-    /var/www/html/app/wp-* /var/www/html/app/*
+    /var/www/html/app/wp-content/ \
+    /var/www/html/app/wp-admin/ \
+    /var/www/html/app/wp-admin/includes/ \
+    /var/www/html/app/wp-include/ \
+    /var/www/html/app/wp-content/plugins/ \
+    /var/www/html/app/wp-content/upload/ \
+    /var/www/html/app/wp-content/themes/ \
+    /var/www/html/app/wp-includes/ \
+    /var/www/html/app/
 
 # Use tini to manage processes and signal forwarding
 #ENTRYPOINT ["/usr/bin/tini", "--"]
