@@ -15,10 +15,7 @@ steps:
     secretEnv: ['ACCESS_TOKEN']
     env:
       - DOCKER_BUILDKIT=1
-    availableSecrets:
-      secretManager:
-        - versionName: projects/$PROJECT_ID/secrets/gcs-json-file/versions/latest
-          env: 'ACCESS_TOKEN'
+
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
@@ -37,6 +34,9 @@ steps:
         - us-docker.pkg.dev/$PROJECT_ID/wordpress/wordpress-1.0:latest
         - --region
         - us-central1
-
 images:
   - us-docker.pkg.dev/$PROJECT_ID/wordpress/wordpress-1.0:latest
+availableSecrets:
+  secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/gcs-json-file/versions/latest
+      env: 'ACCESS_TOKEN'
