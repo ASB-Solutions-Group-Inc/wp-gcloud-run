@@ -24,8 +24,6 @@ RUN docker-php-ext-install zip mysqli pdo pdo_mysql exif && \
     docker-php-ext-install -j "$(nproc)" gd && \
     a2enmod rewrite
 
-# Set fallback mount directory
-ENV MNT_DIR /mnt/gcs
 
 # Set build argument for access token
 ARG _ACCESS_TOKEN
@@ -49,6 +47,8 @@ RUN chmod -R 777 \
     /var/www/html/wp-content/themes/ \
     /var/www/html/wp-includes/ \
     /var/www/html/
+
+ENV MNT_DIR /var/www/html/wp-content/upload
 
 # Use tini to manage processes and signal forwarding
 ENTRYPOINT ["/usr/bin/tini", "--"]
