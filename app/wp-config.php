@@ -17,10 +17,10 @@
  *
  * @package WordPress
  */
-define('FORCE_SSL_ADMIN', true);
+/* define('FORCE_SSL_ADMIN', true);
 if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
     $_SERVER['HTTPS']='on';
-
+*/
 // ** MySQL settings - You can get this info from your web host ** //
 define( 'DB_NAME', getenv('DB_NAME') );		// The name of the database for WordPress
 define( 'DB_USER', getenv('DB_USER') ); 	// MySQL database username

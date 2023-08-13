@@ -2,10 +2,6 @@
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteCond %{HTTP:X-Forwarded-Proto} =http
-RewriteRule .* https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]
-RewriteEngine On
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
