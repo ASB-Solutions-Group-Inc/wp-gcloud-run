@@ -32,9 +32,9 @@ RUN apt-get update && apt-get install -y \
 
 # Set fallback mount directory
 ENV MNT_DIR /mnt/gcs
-ENV ACCESS_TOKEN=$ACCESS_TOKEN
+ENV _ACCESS_TOKEN=$_ACCESS_TOKEN
 
-RUN echo $ACCESS_TOKEN > /var/www/html/app/service_account_conf.json
+RUN echo $_ACCESS_TOKEN > /var/www/html/app/service_account_conf.json
 
 #Testing END 
 # Copy local code to the container image.
