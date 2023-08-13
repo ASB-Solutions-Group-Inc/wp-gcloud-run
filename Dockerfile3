@@ -4,15 +4,15 @@ FROM php:8.0-apache
 # Update and install necessary packages in a single layer
 RUN apt-get update && apt-get upgrade -yy \
     && apt-get install --no-install-recommends -yy \
-        apt-utils libjpeg-dev libpng-dev libwebp-dev \
-        libzip-dev zlib1g-dev libfreetype6-dev supervisor zip \
-        unzip software-properties-common \
-        curl gnupg lsb-release tini && \
+    apt-utils libjpeg-dev libpng-dev libwebp-dev \
+    libzip-dev zlib1g-dev libfreetype6-dev supervisor zip \
+    unzip software-properties-common \
+    curl gnupg lsb-release tini && \
     gcsFuseRepo=gcsfuse-`lsb_release -c -s` && \
     echo "deb http://packages.cloud.google.com/apt $gcsFuseRepo main" | \
-        tee /etc/apt/sources.list.d/gcsfuse.list && \
+    tee /etc/apt/sources.list.d/gcsfuse.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
-        apt-key add - && \
+    apt-key add - && \
     apt-get update && \
     apt-get install -y gcsfuse && \
     apt-get clean && \

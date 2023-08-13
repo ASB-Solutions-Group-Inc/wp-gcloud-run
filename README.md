@@ -1,5 +1,28 @@
 # Wordpress on Google Cloud Run
 
+## Documentation for Dockerfile
+This Dockerfile contains the steps to build an image and deploy it to Google Cloud Run.
+
+### Steps
+Pull the experimental Dockerfile from the cloud builders.
+Pull the version 1.0-experimental Dockerfile from the cloud builders.
+Build the image with the 
+_ACCESS_TOKEN
+ argument from the secret manager.
+Push the built image to the Docker registry.
+Deploy the image to Google Cloud Run.
+Images
+The image used in this Dockerfile is 
+us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-2.0:latest
+.
+
+### Available Secrets
+The secret manager provides access to the 
+_ACCESS_TOKEN
+ environment variable. The version name for the secret is 
+projects/$PROJECT_ID/secrets/gcs-json-file/versions/latest
+.
+
 ## Build and deploy
 ```bash
 gcloud builds submit --tag gcr.io/PROJECT_NAME/IMAGE_NAME // build an image

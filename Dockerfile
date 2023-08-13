@@ -83,8 +83,8 @@ RUN chmod -R 777 /var/www/html/app
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
 # https://github.com/krallin/tini
-ENTRYPOINT ["/usr/bin/tini", "--"]
+#ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-CMD ["./gcsfuse_run.sh"]
+#CMD ["./gcsfuse_run.sh"]
 #Testing END 
