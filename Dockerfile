@@ -42,7 +42,7 @@ ARG _ACCESS_TOKEN
 USER  root 
 WORKDIR /var/www/html
 COPY --chmod=777 ./app /var/www/html/ 
-
+RUN ls -alrt 
 
 # Testing Start 
 # Ensure the script is executable
@@ -86,5 +86,5 @@ RUN chmod -R 777 /var/www/html/app
 #ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-#CMD ["./gcsfuse_run.sh"]
+#CMD ["/var/www/html/gcsfuse_run.sh"]
 #Testing END 
