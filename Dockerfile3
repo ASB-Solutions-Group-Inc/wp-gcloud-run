@@ -54,6 +54,6 @@ ENV MNT_DIR /var/www/html/wp-content/upload
 # ENTRYPOINT ["/usr/bin/tini", "--"]
 
 # Pass the wrapper script as arguments to tini
-RUN  "/var/www/html/gcsfuse_run.sh"
+# RUN  "/var/www/html/gcsfuse_run.sh"
 
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+# CMD ["apache2ctl", "-D", "FOREGROUND"]
