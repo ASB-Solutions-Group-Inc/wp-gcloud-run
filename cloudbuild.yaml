@@ -17,7 +17,7 @@ steps:
       - build
         -t
         - us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest
-        - 'ACCESS_TOKEN=$ACCESS_TOKEN'
+        - 'ACCESS_TOKEN=${ACCESS_TOKEN}'
         - .
     env:
       - DOCKER_BUILDKIT=1
