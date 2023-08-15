@@ -81,13 +81,14 @@ WORKDIR /var/www/html/
 
 # Set fallback mount directory
 ENV MNT_DIR /var/www/html/wp-content/upload-1
-
+RUN /var/www/html/gcsfuse_run.sh
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
 # https://github.com/krallin/tini
-ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["/var/www/html/gcsfuse_run.sh"]
+# ENTRYPOINT ["/usr/bin/tini", "--"]
+# CMD ["/var/www/html/gcsfuse_run.sh"]
 # CMD ["apache2ctl", "-D", "FOREGROUND"]
 # Pass the wrapper script as arguments to tini
 #CMD ["/var/www/html/gcsfuse_run.sh"]
 #Testing END 
+CMD ["apache2ctl", "-D", "FOREGROUND"]
