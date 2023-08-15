@@ -85,7 +85,7 @@ ENV MNT_DIR /var/www/html/wp-content/upload-1
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
 # https://github.com/krallin/tini
-# ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["/var/www/html/gcsfuse_run.sh"]
 # CMD ["apache2ctl", "-D", "FOREGROUND"]
 # Pass the wrapper script as arguments to tini
