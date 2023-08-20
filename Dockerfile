@@ -91,4 +91,4 @@ RUN /var/www/html/gcsfuse_run.sh
 # Pass the wrapper script as arguments to tini
 #CMD ["/var/www/html/gcsfuse_run.sh"]
 #Testing END 
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+# CMD ["apache2ctl", "-D", "FOREGROUND"]
