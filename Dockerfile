@@ -56,7 +56,7 @@ RUN chmod 777 /var/www/html/gcsfuse_run.sh
 USER user
 # Set fallback mount directory
 #ENV MNT_DIR /var/www/html/wp-content/upload-1
-ENV MNT_DIR /var/www/html/wp-content
+ENV MNT_DIR /var/www/html/app-dev
 RUN /var/www/html/gcsfuse_run.sh
 #Testing END 
 
