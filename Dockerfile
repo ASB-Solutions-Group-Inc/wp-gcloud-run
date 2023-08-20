@@ -40,13 +40,6 @@ ARG _ACCESS_TOKEN
 RUN groupadd -r user && useradd -r -g user user
 USER root
 
-WORKDIR /var/www/html/
-RUN chmod 777 /var/www/html/gcsfuse_run.sh
-USER user
-# Set fallback mount directory
-#ENV MNT_DIR /var/www/html/wp-content/upload-1
-ENV MNT_DIR /var/www/html/wp-content
-RUN /var/www/html/gcsfuse_run.sh
 #Testing END 
 # Copy local code to the container image.
 USER  root 
@@ -58,7 +51,13 @@ RUN ls -alrt
 # Ensure the script is executable
 
 RUN echo $_ACCESS_TOKEN > /var/www/html/service_account_conf.json
-#RUN chmod 777 /var/www/html/gcsfuse_run.sh
+WORKDIR /var/www/html/
+RUN chmod 777 /var/www/html/gcsfuse_run.sh
+USER user
+# Set fallback mount directory
+#ENV MNT_DIR /var/www/html/wp-content/upload-1
+ENV MNT_DIR /var/www/html/wp-content
+RUN /var/www/html/gcsfuse_run.sh
 #Testing END 
 
 WORKDIR /var/www/html/wp-content/
