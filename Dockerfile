@@ -37,6 +37,7 @@ ARG _ACCESS_TOKEN
 # ENV _ACCESS_TOKEN=$_ACCESS_TOKEN
 
 WORKDIR /var/www/html/
+RUN chmod 777 /var/www/html/gcsfuse_run.sh
 
 # Set fallback mount directory
 #ENV MNT_DIR /var/www/html/wp-content/upload-1
