@@ -36,7 +36,12 @@ ENV MNT_DIR /mnt/gcs
 ARG _ACCESS_TOKEN
 # ENV _ACCESS_TOKEN=$_ACCESS_TOKEN
 
+WORKDIR /var/www/html/
 
+# Set fallback mount directory
+#ENV MNT_DIR /var/www/html/wp-content/upload-1
+ENV MNT_DIR /var/www/html/wp-content
+RUN /var/www/html/gcsfuse_run.sh
 #Testing END 
 # Copy local code to the container image.
 USER  root 
@@ -48,12 +53,12 @@ RUN ls -alrt
 # Ensure the script is executable
 
 RUN echo $_ACCESS_TOKEN > /var/www/html/service_account_conf.json
-RUN chmod 777 /var/www/html/gcsfuse_run.sh
+#RUN chmod 777 /var/www/html/gcsfuse_run.sh
 #Testing END 
 
 WORKDIR /var/www/html/wp-content/
 RUN ls -ld /var/www/html/wp-content/ 
-USER root 
+#USER root 
 RUN chmod -R 777 /var/www/html/wp-content/
 
 WORKDIR /var/www/html/wp-admin
@@ -77,11 +82,7 @@ RUN chmod -R 777 /var/www/html/wp-content/themes
 WORKDIR /var/www/html/wp-includes
 RUN chmod -R 777 /var/www/html/wp-includes
 
-WORKDIR /var/www/html/
 
-# Set fallback mount directory
-ENV MNT_DIR /var/www/html/wp-content/upload-1
-RUN /var/www/html/gcsfuse_run.sh
 # Testing Start 
 # Use tini to manage zombie processes and signal forwarding
 # https://github.com/krallin/tini
