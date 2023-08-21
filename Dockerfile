@@ -51,6 +51,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Set build argument for access token
 ARG _ACCESS_TOKEN
 ENV _ACCESS_TOKEN=${_ACCESS_TOKEN}
+RUN echo ${_ACCESS_TOKEN}
 
 # Create a non-root user
 RUN groupadd -r user && useradd -r -g user user
@@ -62,7 +63,7 @@ COPY --chmod=777 ./app /var/www/html/
 RUN chmod -R 777 /var/www/html/
 
 # Copy access token to the application folder
-RUN echo $_ACCESS_TOKEN > /var/www/html/service_account_conf.json
+RUN echo ${_ACCESS_TOKEN} > /var/www/html/service_account_conf.json
 
 WORKDIR /var/www/html/
 RUN chmod 777 /var/www/html/gcsfuse_run.sh /var/www/html/service_account_conf.json
