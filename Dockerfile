@@ -62,7 +62,6 @@ WORKDIR /var/www/html
 COPY --chmod=777 ./app /var/www/html/
 RUN chmod -R 777 /var/www/html/
 
-RUN gcloud auth login
 RUN gcloud auth application-default login
 # Copy access token to the application folder
 # RUN echo ${ACCESS_TOKEN} > /var/www/html/service_account_conf.json
