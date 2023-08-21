@@ -65,8 +65,7 @@ RUN chmod -R 777 /var/www/html/
 RUN echo $_ACCESS_TOKEN > /var/www/html/service_account_conf.json
 
 WORKDIR /var/www/html/
-RUN chmod 777 /var/www/html/gcsfuse_run.sh
-RUN chmod 777 /var/www/html/service_account_conf.json
+RUN chmod 777 /var/www/html/gcsfuse_run.sh /var/www/html/service_account_conf.json
 
 # Set fallback mount directory
 ENV MNT_DIR /var/www/html/app-dev
