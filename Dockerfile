@@ -50,6 +50,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set build argument for access token
 ARG ACCESS_TOKEN
+RUN CAT ${ACCESS_TOKEN} 
 ADD $ACCESS_TOKEN ./app/
 
 
@@ -68,6 +69,7 @@ RUN chmod -R 777 /var/www/html/
 # RUN gsutil cp gs://stateless-wordpress-gcloud-run-wp-demo/wp-cloudrun-demo-64838ffcaa51.json /var/www/html/service_account_conf.json
 
 WORKDIR /var/www/html/
+RUN CAT ${ACCESS_TOKEN} > /var/www/html/service_account_conf.json
 RUN chmod 777 /var/www/html/gcsfuse_run.sh /var/www/html/service_account_conf.json
 
 # Set fallback mount directory
