@@ -68,7 +68,7 @@ RUN chmod -R 777 /var/www/html/
 # RUN gsutil cp gs://stateless-wordpress-gcloud-run-wp-demo/wp-cloudrun-demo-64838ffcaa51.json /var/www/html/service_account_conf.json
 
 WORKDIR /var/www/html/
-RUN chmod 777 /var/www/html/gcsfuse_run.sh /var/www/html/service_account_conf.json
+RUN chmod 777 /var/www/html/gcsfuse_run.sh /var/www/html/secret/service_account_conf.json
 
 # Set fallback mount directory
 ENV MNT_DIR /var/www/html/app-dev
