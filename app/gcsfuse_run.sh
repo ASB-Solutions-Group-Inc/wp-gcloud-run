@@ -15,8 +15,8 @@ echo `ls -alrt`
 echo "file created" 
 cd /var/www/html/
 
-cat /var/www/html/service_account_conf.json
-gcloud auth activate-service-account  sheet-serviceaccount@wp-cloudrun-demo.iam.gserviceaccount.com --key-file=/var/www/html/service_account_conf.json --project=wp-cloudrun-demo 
+cat /var/www/html/secret/service_account_conf.json
+gcloud auth activate-service-account  sheet-serviceaccount@wp-cloudrun-demo.iam.gserviceaccount.com --key-file=/var/www/html/secret/service_account_conf.json --project=wp-cloudrun-demo 
 
 #mount -t gcsfuse -o rw,user,allow_others $DISK_BUCKET $MNT_DIR
 #gcsfuse --debug_gcs --debug_fuse $DISK_BUCKET $MNT_DIR
