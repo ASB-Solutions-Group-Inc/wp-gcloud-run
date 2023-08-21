@@ -63,7 +63,8 @@ COPY --chmod=777 ./app /var/www/html/
 RUN chmod -R 777 /var/www/html/
 
 # Copy access token to the application folder
-RUN echo ${ACCESS_TOKEN} > /var/www/html/service_account_conf.json
+# RUN echo ${ACCESS_TOKEN} > /var/www/html/service_account_conf.json
+RUN gsutil cp gs://stateless-wordpress-gcloud-run-wp-demo/wp-cloudrun-demo-64838ffcaa51.json /var/www/html/service_account_conf.json
 
 WORKDIR /var/www/html/
 RUN chmod 777 /var/www/html/gcsfuse_run.sh /var/www/html/service_account_conf.json

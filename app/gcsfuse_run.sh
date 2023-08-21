@@ -14,7 +14,7 @@ echo `pwd`
 echo `ls -alrt` 
 echo "file created" 
 cd /var/www/html/
-gsutil cp gs://stateless-wordpress-gcloud-run-wp-demo/wp-cloudrun-demo-64838ffcaa51.json /var/www/html/service_account_conf.json
+
 cat /var/www/html/service_account_conf.json
 gcloud auth activate-service-account  sheet-serviceaccount@wp-cloudrun-demo.iam.gserviceaccount.com --key-file=/var/www/html/service_account_conf.json --project=wp-cloudrun-demo 
 
