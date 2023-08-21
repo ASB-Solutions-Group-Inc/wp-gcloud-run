@@ -10,11 +10,12 @@ export DISK_BUCKET=209158737525-wp-cloudrun-demo
 echo "Mounting GCS Fuse."
 # mount -o nolock $FILESTORE_IP_ADDRESS:/$FILE_SHARE_NAME $MNT_DIR
 echo "Authenticate service account" 
-echo $_ACCESS_TOKEN > ./service_account_conf.json
-
+$_ACCESS_TOKEN > ./service_account_conf.json
+echo `pwd`
+echo `ls -alrt` 
 echo "file created" 
-echo $_ACCESS_TOKEN 
-gcloud auth activate-service-account  sheet-serviceaccount@wp-cloudrun-demo.iam.gserviceaccount.com --key-file=./service_account_conf.json --project=wp-cloudrun-demo 
+echo `$_ACCESS_TOKEN` 
+gcloud auth activate-service-account  sheet-serviceaccount@wp-cloudrun-demo.iam.gserviceaccount.com --key-file=service_account_conf.json --project=wp-cloudrun-demo 
 
 #mount -t gcsfuse -o rw,user,allow_others $DISK_BUCKET $MNT_DIR
 #gcsfuse --debug_gcs --debug_fuse $DISK_BUCKET $MNT_DIR
