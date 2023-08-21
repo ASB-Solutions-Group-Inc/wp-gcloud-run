@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
     lsb-release \
+    apt-transport-https \
+    ca-certificates \
     tini && \
     gcsFuseRepo=gcsfuse-`lsb_release -c -s` && \
     echo "deb http://packages.cloud.google.com/apt $gcsFuseRepo main" | \
@@ -28,14 +30,12 @@ RUN apt-get update && apt-get install -y \
     apt-key add - && \
     apt-get update && \
     apt-get install -y gcsfuse && \
-    apt-get clean
-
-RUN sudo apt-get install apt-transport-https ca-certificates gnupg curl sudo
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | \
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | \
     tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
     sudo tee /usr/share/keyrings/cloud.google.gpg && \
-    apt-get update && apt-get install google-cloud-cli
+    apt-get update && \
+    apt-get install -y google-cloud-cli
 
 ARG _ACCESS_TOKEN
 # ENV _ACCESS_TOKEN=$_ACCESS_TOKEN
