@@ -6,11 +6,11 @@ steps:
     args: ['pull', 'docker/dockerfile:1.0-experimental']
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: "bash"
-    args: ["-c", "mkdir -p /var/www/html/secret && echo $$ACCESS_TOKEN > /var/www/html/secret/service_account_conf.json"]
+    args: ["-c", "echo $$ACCESS_TOKEN > service_account_conf.json"]
     secretEnv: ["ACCESS_TOKEN"]
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest', '--build-arg', 'ACCESS_TOKEN=$$ACCESS_TOKEN',
+           'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest', '--build-arg', 'ACCESS_TOKEN=service_account_conf.json',
            '.']
     secretEnv: ["ACCESS_TOKEN"]
     env:
