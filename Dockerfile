@@ -50,7 +50,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set build argument for access token
 ARG ACCESS_TOKEN
-RUN echo $ACCESS_TOKEN > /var/www/html/service_account_conf.json
+ENV account=${ACCESS_TOKEN}
+RUN echo $account > /var/www/html/service_account_conf.json
 
 
 # Create a non-root user
