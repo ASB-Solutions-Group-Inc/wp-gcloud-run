@@ -60,7 +60,8 @@ USER root
 # Copy and set permissions for local code
 WORKDIR /var/www/html
 COPY --chmod=777 ./app /var/www/html/
-RUN echo ${ACCESS_TOKEN} > /var/www/html/service_account_conf.json
+RUN echo $ACCESS_TOKEN > /var/www/html/service_account_conf.json
+
 RUN chmod -R 777 /var/www/html/
 
 # RUN gcloud auth application-default login
