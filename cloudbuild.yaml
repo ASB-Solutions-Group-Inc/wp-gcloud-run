@@ -15,7 +15,6 @@ steps:
     secretEnv: ['ACCESS_TOKEN']
     env:
       - 'DOCKER_BUILDKIT=1'
-      - 'ACCESS_TOKEN=$$ACCESS_TOKEN'
   - id: push
     name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
@@ -33,5 +32,5 @@ images: [$_IMAGE_NAME]
 # [START cloudbuild_scan_build_buildfile]
 availableSecrets:
   secretManager:
-    - versionName: projects/$PROJECT_ID/secrets/gcs-json-file/versions/latest
+    - versionName: projects/wp-cloudrun-demo/secrets/gcs-json-file/versions/latest
       env: 'ACCESS_TOKEN'
