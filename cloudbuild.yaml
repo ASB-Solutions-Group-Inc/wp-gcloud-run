@@ -6,10 +6,13 @@ steps:
     args: ['pull', 'docker/dockerfile:1.0-experimental']
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
-    args: [ '-c' , 'docker build -t us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest --build-arg=ACCESS_TOKEN=$$ACCESS_TOKEN  . ']
+    args:
+      - '-c'
+      - |
+        docker build -t us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest --build-arg ACCESS_TOKEN=$$ACCESS_TOKEN  .
     secretEnv: ["ACCESS_TOKEN"]
     env:
-      - DOCKER_BUILDKIT=1
+      - 'DOCKER_BUILDKIT=1'
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
            'us-docker.pkg.dev/wp-cloudrun-demo/wordpress/wordpress-1.0:latest']
