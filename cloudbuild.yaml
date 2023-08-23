@@ -10,11 +10,12 @@ steps:
     args:
       - -c
       - |
-        docker build --build-arg ACCESS_TOKEN=$$ACCESS_TOKEN -t $_IMAGE_NAME -f ./Dockerfile .
+        docker build --build-arg ACCESS_TOKEN=$ACCESS_TOKEN -t $_IMAGE_NAME -f ./Dockerfile .
 # docker build -t $_IMAGE_NAME --build-arg ACCESS_TOKEN=$$ACCESS_TOKEN -f ./Dockerfile .
     secretEnv: ['ACCESS_TOKEN']
     env:
       - 'DOCKER_BUILDKIT=1'
+      - 'ACCESS_TOKEN=$$ACCESS_TOKEN'
   - id: push
     name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
