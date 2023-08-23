@@ -10,9 +10,9 @@ steps:
     args:
       - -c
       - |
-        docker build -t $_IMAGE_NAME -f ./Dockerfile . 
+        docker build -t $_IMAGE_NAME -f ./Dockerfile  --build-arg="ACCESS_TOKEN=$$ACCESS_TOKEN" . 
 # docker build -t $_IMAGE_NAME --build-arg ACCESS_TOKEN=$$ACCESS_TOKEN -f ./Dockerfile .
-    secretEnv: ['_ACCESS_TOKEN']
+    secretEnv: ['ACCESS_TOKEN']
     env:
       - 'DOCKER_BUILDKIT=1'
   - id: push
@@ -33,4 +33,4 @@ images: [$_IMAGE_NAME]
 availableSecrets:
   secretManager:
     - versionName: projects/wp-cloudrun-demo/secrets/gcs-json-file/versions/latest
-      env: '_ACCESS_TOKEN'
+      env: 'ACCESS_TOKEN'
