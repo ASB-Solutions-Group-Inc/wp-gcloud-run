@@ -33,5 +33,4 @@ images: [$_IMAGE_NAME]
 availableSecrets:
   secretManager:
     - versionName: projects/wp-cloudrun-demo/secrets/gcs-json-file/versions/latest
-      env: 
-        - ACCESS_TOKEN
+      env: ['ACCESS_TOKEN']
