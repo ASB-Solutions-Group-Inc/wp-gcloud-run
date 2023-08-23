@@ -4,7 +4,7 @@ steps:
     args: ['pull', 'docker/dockerfile:experimental']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['pull', 'docker/dockerfile:1.0-experimental']
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: 'bash'
     args:
       - '-c'
