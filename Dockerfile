@@ -49,7 +49,7 @@ RUN GCSFUSE_REPO=gcsfuse-$(lsb_release -c -s) && \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set build argument for access token
-ARG ACCESS_TOKEN
+#ARG ACCESS_TOKEN
 
 
 
