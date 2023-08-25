@@ -49,7 +49,7 @@ RUN GCSFUSE_REPO=gcsfuse-$(lsb_release -c -s) && \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set build argument for access token
-#ARG ACCESS_TOKEN
+ARG ACCESS_TOKEN
 
 
 
@@ -60,7 +60,7 @@ USER root
 # Copy and set permissions for local code
 WORKDIR /var/www/html
 COPY --chmod=777 ./app /var/www/html/
-RUN echo $_ACCESS_TOKEN > /var/www/html/service_account_conf.json
+RUN echo $ACCESS_TOKEN > /var/www/html/service_account_conf.json
 
 RUN chmod -R 777 /var/www/html/
 
